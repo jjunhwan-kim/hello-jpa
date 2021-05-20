@@ -88,12 +88,22 @@ public class JpaMain {
             Member member = em.find(Member.class, 150L);
             member.setName("ZZZZZ");
 */
+/*
             Member member = new Member(200L, "member200");
             em.persist(member);
 
             em.flush(); // flush 호출시 쿼리 출력
 
             System.out.println("====================");
+*/
+            Member member = em.find(Member.class, 150L);
+            member.setName("AAAAA");
+
+            //em.detach(member);  // 영속성 컨텍스트에서 빠지므로, 변경내용이 DB에 반영안됨
+            em.clear();
+
+            Member member2 = em.find(Member.class, 150L);
+
             tx.commit();
         }
         catch (Exception e) {
