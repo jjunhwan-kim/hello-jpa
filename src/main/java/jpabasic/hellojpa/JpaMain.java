@@ -34,7 +34,6 @@ public class JpaMain {
             // Delete
             Member findMember = em.find(Member.class, 1L);
             em.remove(findMember);
-
 */
 /*
             // Update
@@ -51,6 +50,43 @@ public class JpaMain {
                 System.out.println("member.name = " + member.getName());
             }
 */
+/*
+            // 비영속
+            Member member = new Member();
+            member.setId(101L);
+            member.setName("HelloJPA");
+
+            // 영속
+            System.out.println("=== BEFORE ===");
+            em.persist(member); // 비영속->영속, 1차 캐시에 저장
+            //em.detach(member); // 영속->비영속
+            System.out.println("=== AFTER ===");
+
+            Member findMember = em.find(Member.class, 101L);  // 1차 캐시에서 조회
+
+            System.out.println("findMember.id = " + findMember.getId());
+            System.out.println("findMember.name = " + findMember.getName());
+*/
+/*
+            // DB에서 조회하여 1차 캐시에 저장
+            Member findMember1 = em.find(Member.class, 101L);
+            // 1차 캐시에서 조회, 따라서 SQL Select 쿼리는 1번만 출력됨
+            Member findMember2 = em.find(Member.class, 101L);
+            // 영속 엔티티의 동일성 보장
+            System.out.println("result = " + (findMember1 == findMember2));
+*/
+/*
+            Member member1 = new Member(151L, "A");
+            Member member2 = new Member(161L, "B");
+
+            em.persist(member1);
+            em.persist(member2);
+            System.out.println("====================");
+*/
+            // 엔티티 수정, 변경 감지
+            Member member = em.find(Member.class, 150L);
+            member.setName("ZZZZZ");
+
             tx.commit();
         }
         catch (Exception e) {
