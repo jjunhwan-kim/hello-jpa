@@ -83,10 +83,17 @@ public class JpaMain {
             em.persist(member2);
             System.out.println("====================");
 */
+/*
             // 엔티티 수정, 변경 감지
             Member member = em.find(Member.class, 150L);
             member.setName("ZZZZZ");
+*/
+            Member member = new Member(200L, "member200");
+            em.persist(member);
 
+            em.flush(); // flush 호출시 쿼리 출력
+
+            System.out.println("====================");
             tx.commit();
         }
         catch (Exception e) {
