@@ -96,6 +96,7 @@ public class JpaMain {
 
             System.out.println("====================");
 */
+/*
             Member member = em.find(Member.class, 150L);
             member.setName("AAAAA");
 
@@ -103,7 +104,7 @@ public class JpaMain {
             em.clear();
 
             Member member2 = em.find(Member.class, 150L);
-
+*/
             tx.commit();
         }
         catch (Exception e) {

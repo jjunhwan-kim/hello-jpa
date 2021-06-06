@@ -64,6 +64,7 @@ public class PersistenceContextTest {
             System.out.println("==========");
             */
 
+            /*
             // Test 5 - 준영속 상태
             Member member = em.find(Member.class, 200L);
             member.setName("AAAAA");
@@ -75,7 +76,7 @@ public class PersistenceContextTest {
             // em.detach(member) : member만 영속성 컨텍스트에서 삭제
             // em.clear() : 영속성 컨텍스트 초기화
             // em.close() : 영속성 컨텍스트 종료
-
+            */
 
             tx.commit();
         }
