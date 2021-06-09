@@ -6,30 +6,21 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-//@Table(name = "USER") // 테이블 이름이 클래스 이름과 다를경우
-
-@SequenceGenerator(
-        name="member_seq_generator",
-        sequenceName = "member_seq",
-        initialValue = 1, allocationSize = 50)
-/*
-@TableGenerator(
-        name="member_seq_generator",
-        table = "my_sequences",
-        pkColumnValue = "member_seq", allocationSize = 1)
-*/
 public class Member {
 
-    // 직접 할당
-    @Id
-    // 자동 생성(identity, sequence, table, auto)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
-    // @GeneratedValue(strategy = GenerationType.TABLE, generator = "member_seq_generator")
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
+    @Column(name = "member_id")
     private Long id;
 
-    @Column(name ="name", nullable = false)
+    @Column(name = "username")
     private String username;
+
+//    @Column(name = "team_id")
+//    private Long teamId;
+
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 
     public Long getId() {
         return id;
@@ -47,6 +38,21 @@ public class Member {
         this.username = username;
     }
 
-    public Member() {
+    public Team getTeam() {
+        return team;
     }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    /*
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
+    }
+    */
 }
