@@ -46,6 +46,12 @@ public class Member {
         this.team = team;
     }
 
+    // 연관관계 편의 메소드
+    public void changeTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
+
     /*
     public Long getTeamId() {
         return teamId;
@@ -55,4 +61,13 @@ public class Member {
         this.teamId = teamId;
     }
     */
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", team=" + team +
+                '}';
+    }
 }

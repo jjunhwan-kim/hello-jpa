@@ -22,19 +22,26 @@ public class EntityMappingTest {
 
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
+            //member.setTeam(team);     // 연관관계의 주인인 Member.team에 team을 설정해야 함
+            member.changeTeam(team);    // 연관관계 편의 메소드
             em.persist(member);
 
-            em.flush();
-            em.clear();
+            //team.addMember(member);   // 연관관계 편의 메소드
 
-            Member findMember = em.find(Member.class, member.getId());
-            List<Member> members = findMember.getTeam().getMembers();
+            //team.getMembers().add(member);    // team의 members 컬렉션에 member 설정
 
+            //em.flush();
+            //em.clear();
+
+            Team findTeam = em.find(Team.class, team.getId());
+            List<Member> members = findTeam.getMembers();
+
+            System.out.println("==========");
+            //System.out.println("members = " + findTeam); // stack over flow 발생 무한루프
             for (Member m : members) {
                 System.out.println("m = " + m.getUsername());
             }
-
+            System.out.println("==========");
 
             tx.commit();
         }
