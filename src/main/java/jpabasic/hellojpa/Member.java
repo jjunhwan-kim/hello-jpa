@@ -16,7 +16,7 @@ public class Member {
     private String username;
 
     @ManyToOne
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "team_id", insertable = false, updatable = false) // 읽기전용 매핑
     private Team team;
 
     public Long getId() {
@@ -33,38 +33,5 @@ public class Member {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
-    // 연관관계 편의 메소드
-    public void changeTeam(Team team) {
-        this.team = team;
-        team.getMembers().add(this);
-    }
-
-    /*
-    public Long getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
-    }
-    */
-
-    @Override
-    public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", team=" + team +
-                '}';
     }
 }

@@ -16,6 +16,7 @@ public class EntityMappingTest {
         tx.begin();
 
         try {
+            /*
             Team team = new Team();
             team.setName("TeamA");
             em.persist(team);
@@ -42,7 +43,7 @@ public class EntityMappingTest {
                 System.out.println("m = " + m.getUsername());
             }
             System.out.println("==========");
-
+            */
             tx.commit();
         }
         catch (Exception e) {

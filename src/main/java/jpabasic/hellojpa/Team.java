@@ -12,12 +12,12 @@ public class Team {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany
+    @JoinColumn(name = "team_id")
     private List<Member> members = new ArrayList<>();
 
     // 연관관계 편의 메소드
     public void addMember(Member member) {
-        member.setTeam(this);
         members.add(member);
     }
 
