@@ -27,8 +27,8 @@ public class InheritanceMappingTest {
             em.flush();
             em.clear();
 
-            Movie findMovie = em.find(Movie.class, movie.getId());
-            System.out.println("findMovie = " + findMovie);
+            Item item = em.find(Item.class, movie.getId());
+            System.out.println("item = " + item);
 
             tx.commit();
         }
