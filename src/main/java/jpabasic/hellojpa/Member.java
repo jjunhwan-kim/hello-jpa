@@ -21,9 +21,11 @@ public class Member extends BaseEntity {
     @JoinColumn(name = "team_id", insertable = false, updatable = false) // 읽기전용 매핑
     private Team team;
 
+    /*
     @OneToOne
     @JoinColumn(name = "locker_id")
     private Locker locker;
+    */
 
     @OneToMany(mappedBy = "member")
     private List<MemberProduct> memberProducts = new ArrayList<>();
@@ -42,5 +44,9 @@ public class Member extends BaseEntity {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 }
