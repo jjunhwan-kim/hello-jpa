@@ -17,8 +17,8 @@ public class Member extends BaseEntity {
     @Column(name = "username")
     private String username;
 
-    @ManyToOne
-    @JoinColumn(name = "team_id", insertable = false, updatable = false) // 읽기전용 매핑
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
     private Team team;
 
     /*
@@ -48,5 +48,9 @@ public class Member extends BaseEntity {
 
     public Team getTeam() {
         return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
