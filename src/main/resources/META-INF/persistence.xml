@@ -12,6 +12,8 @@
         <class>jpabasic.hellojpa.Album</class>
         <class>jpabasic.hellojpa.Book</class>
         <class>jpabasic.hellojpa.Movie</class>
+        <class>jpabasic.hellojpa.Parent</class>
+        <class>jpabasic.hellojpa.Child</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
