@@ -14,7 +14,7 @@ public class Parent {
 
     private String name;
 
-    @OneToMany(mappedBy = "parent", cascade = ALL)
+    @OneToMany(mappedBy = "parent", cascade = ALL, orphanRemoval = true)
     private List<Child> childList = new ArrayList<>();
 
     // 연관관계 편의 메소드

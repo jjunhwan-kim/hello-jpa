@@ -24,6 +24,17 @@ public class CascadeTest {
             parent.addChild(child2);
 
             em.persist(parent);
+            em.persist(child1);
+            em.persist(child2);
+
+            em.flush();
+            em.clear();
+
+            Parent findParent = em.find(Parent.class, parent.getId());
+            // Parent의 childList에서 Child 오브젝트 제거시 데이터베이스에서 제거됨
+            //findParent.getChildList().remove(0);
+            // Parent 제거시 Child 오브젝트도 같이 제거됨, CascadeType.REMOVE 처럼 동작함
+            em.remove(findParent);
 
             tx.commit();
         }
