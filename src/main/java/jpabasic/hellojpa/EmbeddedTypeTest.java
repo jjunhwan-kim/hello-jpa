@@ -15,12 +15,22 @@ public class EmbeddedTypeTest {
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setUsername("hello");
-            member.setHomeAddress(new Address("city", "strret", "zipcode"));
-            member.setWorkPeriod(new Period());
+            Address homeAddress = new Address("city", "street", "10000");
 
-            em.persist(member);
+            Member member1 = new Member();
+            member1.setUsername("hello");
+            member1.setHomeAddress(homeAddress);
+            member1.setWorkPeriod(new Period());
+
+            Member member2 = new Member();
+            member2.setUsername("hello");
+            member2.setHomeAddress(homeAddress);
+            member2.setWorkPeriod(new Period());
+
+            em.persist(member1);
+            em.persist(member2);
+
+            //member1.getHomeAddress().setCity("newCity");
 
             tx.commit();
         }
