@@ -26,8 +26,10 @@ public class ValueTypeCollectionTest {
             member.getFavoriteFoods().add("피자");
             member.getFavoriteFoods().add("족발");
 
-            member.getAddressHistory().add(new Address("old1", "street", "10000"));
-            member.getAddressHistory().add(new Address("old2", "street", "10000"));
+            AddressEntity address1 = new AddressEntity("old1", "street", "10000");
+            AddressEntity address2 = new AddressEntity("old2", "street", "10000");
+            member.getAddressHistory().add(address1);
+            member.getAddressHistory().add(address2);
 
             // 값 타입 컬렉션은 DB에서 다른 테이블이지만 member를 persist시 같이 DB에 저장됨
             em.persist(member);
@@ -39,9 +41,9 @@ public class ValueTypeCollectionTest {
             // 값 타입 컬렉션은 기본적으로 지연로딩임
             Member findMember = em.find(Member.class, member.getId());
 
-            List<Address> addressHistory = findMember.getAddressHistory();
-            for (Address address : addressHistory) {
-                System.out.println("address = " + address.getCity());
+            List<AddressEntity> addressHistory = findMember.getAddressHistory();
+            for (AddressEntity address : addressHistory) {
+                System.out.println("address = " + address.getAddress().getCity());
             }
 
             Set<String> favoriteFoods = findMember.getFavoriteFoods();
@@ -58,8 +60,9 @@ public class ValueTypeCollectionTest {
             findMember.getFavoriteFoods().add("한식");
 
             // Address 테이블에서 Member의 로우를 다 지우고 다시 삽입, 따라서 old2와 newCity1을 insert함
-            findMember.getAddressHistory().remove(new Address("old1", "street", "10000"));
-            findMember.getAddressHistory().add(new Address("newCity1", "street", "10000"));
+            address1 = em.find(AddressEntity.class, address1.getId());
+            findMember.getAddressHistory().remove(address1);
+            findMember.getAddressHistory().add(new AddressEntity("newCity1", "street", "10000"));
 
             tx.commit();
         }
